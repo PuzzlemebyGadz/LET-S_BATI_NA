@@ -10,11 +10,92 @@
 
   <!-- Document Title -->
   <title>FLOWERS</title>
+
+  
+
+
+ 
+  <style>
+    /* Style for the button with fade-in animation and transparency */
+    .play-button {
+      background-color: rgba(0, 0, 0, 0); /* Transparent background */
+      color: white;
+      font-size: 18px;
+      padding: 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      position: absolute;
+      bottom: 5%; /* Lower the button */
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0; /* Start fully transparent */
+      animation: fadeInButton 30s forwards; /* Fade in over 10 seconds */
+    }
+
+    /* Hover effect for the button */
+    .play-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Button fade-in animation */
+    @keyframes fadeInButton {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0.03; /* End with 10% opacity */
+      }
+    }
+
+    /* Initially hide the note */
+    .hidden-note {
+      display: none;
+      position: absolute;
+      top: 60%; /* Adjust the initial position */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: white;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    /* Fade and move-up animation for the note */
+    @keyframes fadeUp {
+      0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-50%) translateY(-100px); /* Move up */
+        opacity: 0;
+      }
+    }
+
+    /* Apply fade-up animation to the note */
+    .fade-up {
+      animation: fadeUp 10s forwards;
+    }
+  </style>
+
+
+
+
 </head>
 
 <body class="not-loaded">
   <!-- Background -->
   <div class="night"></div>
+
+
+ <!-- Main Flower and Button Container -->
+ <div class="flower-container">
+
+
+
 
   <!-- Flower -->
   <div class="flowers">
@@ -34,7 +115,6 @@
         <div class="flower__light flower__light--6"></div>
         <div class="flower__light flower__light--7"></div>
         <div class="flower__light flower__light--8"></div>
-
       </div>
       <div class="flower__line">
         <div class="flower__line__leaf flower__line__leaf--1"></div>
@@ -62,7 +142,6 @@
         <div class="flower__light flower__light--6"></div>
         <div class="flower__light flower__light--7"></div>
         <div class="flower__light flower__light--8"></div>
-
       </div>
       <div class="flower__line">
         <div class="flower__line__leaf flower__line__leaf--1"></div>
@@ -88,7 +167,6 @@
         <div class="flower__light flower__light--6"></div>
         <div class="flower__light flower__light--7"></div>
         <div class="flower__light flower__light--8"></div>
-
       </div>
       <div class="flower__line">
         <div class="flower__line__leaf flower__line__leaf--1"></div>
@@ -314,8 +392,48 @@
     </div>
   </div>
 
+
+
+
+  <!-- Button to trigger music and reveal note -->
+  <button id="playButton" class="play-button">You Found Me!!</button>
+
+  <!-- Note (hidden initially) -->
+  <p id="note" class="hidden-note">CHECK UNDER THE BOX</p>
+
+  <!-- Audio element (add your own music file) -->
+  <audio id="music" src="audio/July.mp3" preload="auto"></audio>
+
+
+
+
   <!-- Title -->
   <h1 class="title"><span id="title"></span></h1>
+
+
+
+ 
+  
+  <script>
+    // JavaScript to handle button click event
+    document.getElementById("playButton").addEventListener("click", function () {
+      // Play the music
+      var music = document.getElementById("music");
+      music.play();
+
+      // Reveal the note and start fade-up animation
+      var note = document.getElementById("note");
+      note.style.display = "block"; // Show the note
+      setTimeout(function () {
+        note.classList.add("fade-up"); // Add the animation class after a delay
+      }, 100); // Small delay to ensure the note appears first
+    });
+  </script>
+
+
+
+
+  
 </body>
 
 </html>
