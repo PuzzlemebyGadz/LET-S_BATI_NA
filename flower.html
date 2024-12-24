@@ -402,7 +402,7 @@
   <p id="note" class="hidden-note">CHECK UNDER THE BOX,FIND THREAD</p>
 
   <!-- Audio element (add your own music file) -->
-  <audio id="music" src="audio/July.mp3" preload="auto"></audio>
+  <audio id="music" src="audio/July.mp3" preload="auto" loop></audio>
 
 
 
@@ -419,6 +419,7 @@
     document.getElementById("playButton").addEventListener("click", function () {
       // Play the music
       var music = document.getElementById("music");
+      music.loop = true; //enabled looping
       music.play();
 
       // Reveal the note and start fade-up animation
